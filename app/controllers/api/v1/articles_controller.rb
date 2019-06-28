@@ -3,6 +3,8 @@ class Api::V1::ArticlesController < Api::V1::ApiController
   def index
 
     @articles = Article.pluck(:id, :title)
+    p @articles.class
+    p @articles.size
     render 'api/v1/index'
   end
 

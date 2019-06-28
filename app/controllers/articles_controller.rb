@@ -16,7 +16,7 @@ class ArticlesController < ApplicationController
   private
 
   def find_article_info
-    @article = Article.find_by(title: params[:title])
+    @article = Article.find_by(id: params[:id])
   end
 
   def import_everything_params

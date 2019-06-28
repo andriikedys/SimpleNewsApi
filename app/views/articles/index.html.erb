@@ -1,4 +1,4 @@
-<%= form_with scope: :criteria, url: import_articles_path do |form| %>
+<%= form_with scope: :criteria, url: import_path do |form| %>
   <span>
     Keywords or phrases to search for
   </span>
@@ -31,7 +31,7 @@
 <% if Article.first.present? %>
   <% Article.find_each do |cont| %>
     <br>
-      <%= link_to cont.title, articles_path(title: cont.title)  %>
+      <%= link_to cont.title, article_path(cont.id)  %>
     <br>
   <%end %>
 <%end %>
