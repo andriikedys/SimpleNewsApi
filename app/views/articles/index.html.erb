@@ -1,0 +1,41 @@
+<%= form_with scope: :criteria, url: import_articles_path do |form| %>
+  <span>
+    Keywords or phrases to search for
+  </span>
+  <div>
+    <%= form.label 'Query' %>
+    <%= form.text_field :q %>
+  </div>
+  <span>
+    Order to search: From the oldest To the Newest
+  </span>
+  <div>
+    <%= form.label 'From range' %>
+    <%= form.text_field :from %>
+  </div>
+  <span>
+    The order to sort the articles in.
+    relevancy = articles more closely related to q come first.
+    popularity = articles from popular sources and publishers come first.
+    publishedAt = newest articles come first.
+  </span>
+  <div>
+    <%= form.label 'Sort_by:' %>
+    <%= form.select :sort_by, %w[relevancy popularity publishedAt] %>
+  </div>
+  <div>
+    <%= form.submit 'IMPORT'%>
+  </div>
+<% end %>
+<br>
+<% if Article.first.present? %>
+  <% Article.find_each do |cont| %>
+    <br>
+      <%= link_to cont.title, articles_path(title: cont.title)  %>
+    <br>
+  <%end %>
+<%end %>
+
+<!--relevancy, popularity, publishedAt.-->
+<!--relevancy = articles more closely related to q come first.-->
+<!--popularity = articles from popular sources and publishers come first.-->
