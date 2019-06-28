@@ -4,14 +4,14 @@
   </span>
   <div>
     <%= form.label 'Query' %>
-    <%= form.text_field :q %>
+    <%= form.text_field :q, class: 'order-form__input' %>
   </div>
   <span>
     Order to search: From the oldest To the Newest
   </span>
   <div>
     <%= form.label 'From range' %>
-    <%= form.text_field :from %>
+    <%= form.text_field :from, class: 'order-form__input', type: 'date' %>
   </div>
   <span>
     The order to sort the articles in.
