@@ -1,37 +1,47 @@
 <%= form_with scope: :criteria, url: import_path do |form| %>
-  <span>
-    Keywords or phrases to search for
-  </span>
-  <div>
-    <%= form.label 'Query' %>
-    <%= form.text_field :q, class: 'order-form__input' %>
+  <div class="order-form">
+    <div class="order-form__content">
+      <div class="order-form__title">Keywords or phrases to search for</div>
+      <div class="order-form__inner">
+        <div class="order-form__subtitle">
+          Query
+        </div>
+        <%= form.text_field :q, class: 'order-form__input' %>
+      </div>
+      <div class="order-form__inner">
+        <div class="order-form__subtitle">
+          Order to search: From the oldest To the Newest
+        </div>
+        <div class="order-form__field">
+          <%= form.text_field :from, class: 'order-form__input', type: 'date' %>
+        </div>
+      </div>
+      <div class="order-form__text">
+        The order to sort the articles in.
+        relevancy = articles more closely related to q come first.
+        popularity = articles from popular sources and publishers come first.
+        publishedAt = newest articles come first.
+      </div>
+      <div class="order-form__inner">
+        <div class="order-form__subtitle">
+          Sort by:
+        </div>
+        <div class="order-form__select">
+          <%= form.select :sort_by, %w[relevancy popularity publishedAt], {}, { :class => 'js-select' } %>
+        </div>
+      </div>
+      <div class="order-form__bottom">
+        <%= form.submit 'IMPORT', class: 'btn' %>
+      </div>
+    <% end %>
+    <% if Article.first.present? %>
+      <ul class="order-list">
+        <% Article.find_each do |cont| %>
+          <li class="order-list__itm">
+            <%= link_to cont.title, article_path(cont.id), class: 'order-list__link'  %>
+          </li>
+        <%end %>
+      </ul>
+    <%end %>
+    </div>
   </div>
-  <span>
-    Order to search: From the oldest To the Newest
-  </span>
-  <div>
-    <%= form.label 'From range' %>
-    <%= form.text_field :from, class: 'order-form__input', type: 'date' %>
-  </div>
-  <span>
-    The order to sort the articles in.
-    relevancy = articles more closely related to q come first.
-    popularity = articles from popular sources and publishers come first.
-    publishedAt = newest articles come first.
-  </span>
-  <div>
-    <%= form.label 'Sort_by:' %>
-    <%= form.select :sort_by, %w[relevancy popularity publishedAt] %>
-  </div>
-  <div>
-    <%= form.submit 'IMPORT'%>
-  </div>
-<% end %>
-<br>
-<% if Article.first.present? %>
-  <% Article.find_each do |cont| %>
-    <br>
-      <%= link_to cont.title, article_path(cont.id)  %>
-    <br>
-  <%end %>
-<%end %>

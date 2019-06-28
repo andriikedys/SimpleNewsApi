@@ -1,28 +1,25 @@
-<div>
-  <ul>
-    <li>
-      <span>
-        author
-        <%= @article.author %>
-      </span>
-    </li>
-    <li>
-      <span>
-        title
-        <%= @article.title %>
-      </span>
-    </li>
-    <li>
-      <span>
-        description
-        <%= @article.description %>
-      </span>
-    </li>
-    <li>
-      <span>
-        image
-        <img src=<%="#{@article.url_to_image}" %>>
-      </span>
-    </li>
-  </ul>
+<div class="card">
+  <div class="card__row">
+    <div class="card__title">
+      <strong>Author: </strong> <%= @article.author %>
+    </div>
+  </div>
+  <div class="card__row">
+    <div class="card__title">
+      <strong>Title: </strong>  <%= @article.title %>
+    </div>
+  </div>
+  <div class="card__row">
+    <div class="card__title">
+      <strong>Description: </strong>  <%= @article.description %>
+    </div>
+  </div>
+  <div class="card__row">
+    <div class="card__title">
+      <strong>Image</strong>
+    </div>
+    <div class="card__img">
+      <img src=<%="#{@article.url_to_image}" %> >
+    </div>
+  </div>
 </div>
